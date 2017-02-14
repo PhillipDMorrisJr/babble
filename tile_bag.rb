@@ -8,7 +8,7 @@ class TileBag
 		if @tiles.length == 1
 			tileIndex = 0
 		else
-			tileIndex = Random.rand(tiles.length - 1)
+			tileIndex = Random.rand(@tiles.length - 1)
 		end
 		tileIndex = @tile.slice!(tileIndex)
 		return tileIndex
