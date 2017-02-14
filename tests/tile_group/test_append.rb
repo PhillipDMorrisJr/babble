@@ -1,27 +1,29 @@
-require "minitest/autorun"
-require_relative "../../tile_group.rb"
-class TileGroup::TestAppend < Minitest::Test
+require_relative '../../tile_group.rb'
+require 'minitest/autorun'
 
-	def setup 
-		@tiles = TileGroup.new
+class TestAppend < Minitest::Test
+
+	def setup
+		@group = TileGroup.new
 	end
-
+	
 	def test_append_one_tile
-		@tiles.append(:A)
-		assert_equal 1, @tiles.getTiles.length
-
+		@group.append :A
+		assert_equal [:A], @group.tiles
 	end
-
-	def test_append_many_tilesruby 
-		@tiles.append(:A)
-		@tiles.append(:C)
-		@tiles.append(:B)
-		assert_equal 3, @tiles.getTiles.length
+	
+	def test_append_many_tiles
+		@group.append :A
+		@group.append :B
+		@group.append :C
+		assert_equal [:A, :B, :C], @group.tiles
 	end
 	
 	def test_append_duplicate_tiles
-		@tiles.append(:A)
-		@tiles.append(:A)
-		assert_equal 2, @tiles.getTiles.length
+		@group.append :A
+		@group.append :B
+		@group.append :A
+		assert_equal [:A, :B, :A], @group.tiles
 	end
+
 end
