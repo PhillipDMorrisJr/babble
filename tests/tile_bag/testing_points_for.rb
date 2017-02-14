@@ -1,30 +1,18 @@
-require "minitest/autorun"
-require_relative "../../tile_bag.rb"
-class TestPointsFor < Minitest::Test
+require_relative '../../tile_bag.rb'
+require 'minitest/autorun'
 
-	def setup
-		@onePointValues = [:A, :E, :I, :O, :L, :N, :R, :T,  :S, :U]
-		@twoPointValues = [:D, :G]
-		@threePointValues = [:B, :C, :M, :P]
-		@fourPointValues = [:F, :H, :V, :W, :Y]
-		@eightPointValues = [:J, :X]
-		@tenPointValues = [:Q, :Z]
-		@tile_bag = = TileBag.new
+# Test suite for the TileBag::points_for method
+class TestPointsFor < MiniTest::Test
+
+	# Tests that points_for returns the proper values for each tile
+	def test_confirm_point_values
+		[:E, :A, :I, :O, :N, :R, :T, :L, :S, :U].each { |x| assert_equal 1, TileBag.points_for(x) }
+		[:D, :G].each { |x| assert_equal 2, TileBag.points_for(x) }
+		[:B, :C, :M, :P].each { |x| assert_equal 3, TileBag.points_for(x) }
+		[:F, :H, :V, :W, :Y].each { |x| assert_equal 4, TileBag.points_for(x) }
+		assert_equal 5, TileBag.points_for(:K)
+		[:J, :X].each { |x| assert_equal 8, TileBag.points_for(x) }
+		[:Q, :Z].each { |x| assert_equal 10, TileBag.points_for(x) }
 	end
 	
-	def test_points
-		@onePointValues.each, do|i|,  assert_equal, 1, TileBag.points_for(i)
-		end
-		@twoPointValues.each do|i|,  assert_equal, 2, TileBag.points_for(i)
-		end
-		@threePointValues.each do|i|,  assert_equal, 3, TileBag.points_for(i)
-		end		
-		@fourPointValues.each do|i|,  assert_equal, 4, TileBag.points_for(i)
-		end	
-		@eightPointValues.each do|i|,  assert_equal, 8, TileBag.points_for(i)
-		end
-		@tenPointValues.each do|i|,  assert_equal, 10, TileBag.points_for(i)
-		end
-	end
-end
 
